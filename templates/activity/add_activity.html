@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/style/style.css' %}">
+
+</head>
+<body>
+    <h1 > Grupo Mir </h1>
+    <h2 > Cadastro de Atividades </h2>
+    <p> (*) Campos obrigatórios <p>
+    <form method="get">
+
+        {% comment %} Campo Ativo {% endcomment %}
+        <label for="type_client"> Ativo </label>
+        <select class="" name="active">
+            <option value="0"> Sim </option>
+            <option value="1"> Não </option>
+        </select>
+        
+        {% comment %} campo Profissional com JS{% endcomment %}
+        <label for="type_client"> Profissional* </label>
+        <input type="hidden" name="id_user">
+        <input type="hidden" name="email">
+        <input type="hidden" name="name_user_email">
+        <select class="" name="active">
+            <option value=""> Selecionar Profissional </option>
+            <option value=""> JS </option>
+        </select>
+
+        {% comment %} campo Cliente com JS{% endcomment %}
+        <label for="client_name" > Cliente </label>
+        <select class="" name="client_name">
+            <option value=""> Selecionar Clientes </option>
+            <option value=""> JS </option>
+        </select>
+
+        {% comment %} campo Projeto com JS{% endcomment %}
+        <label for="name_project"> Projeto </label>
+        <input type="hidden" name="project_name">
+        <input type="hidden" name="id_project">
+        <select class="" name="name_project">
+            <option value=""> Selecionar Projeto </option>
+            <option value=""> JS </option>
+        </select>
+
+        {% comment %} campo Atividade com JS{% endcomment %}
+        <label for="id_user" > Atividade* </label>
+        <select class="" name="activity_name">
+            <option value=""> Selecionar Atividade </option>
+            <option value=""> JS </option>
+        </select>
+        
+        {% comment %} campo Subatividade com JS{% endcomment %}
+        <label for="id_user" > Subatividade* </label>
+        <select class="" name="subactivity_name">
+            <option value=""> Selecionar Atividade </option>
+            <option value=""> JS </option>
+        </select>
+
+
+        {% comment %} campo Horas Vendidas {% endcomment %}
+        <label for="hour_act"> Horas Vendidas </label>
+        <input type="number" name="hour_act">
+        
+        {% comment %} campo Horas Adicionais{% endcomment %}
+        <label for="hour_add"> Horas Adicionais </label>
+        <input type="number" name="hour_add">
+        
+        {% comment %} campo Hora Entrada{% endcomment %}
+        <label for="hour_in"> Horas Entrada </label>
+        <input type="number" name="hour_in">
+        
+        {% comment %} campo Hora Saida{% endcomment %}
+        <label for="hour_out"> Horas Saída </label>
+        <input type="number" name="hour_out">
+
+        {% comment %} campo descrição da atividade com campo oculto {% endcomment %}
+        <label for="desc_activity">Descrição Atividade</label>
+        <textarea name="desc_activity"></textarea> 
+        <input type="hidden" name="address" id="address" >
+        <input type="hidden" name="contact" id="contact" >
+        <input type="hidden" name="refectory" id="refectory" >
+        <input type="hidden" name="parking_local" id="parking_local" >
+        <input  type="hidden" name="km_i" />
+        <input  type="hidden" name="km_v" />
+        <input  type="hidden" name="value_km" />
+        <input  type="hidden" name="toll_v" id="value_Toll_v"  />
+        <input  type="hidden" name="toll_i" id="value_Toll"  />
+        <input  type="hidden" name="value_lanch" />
+        <input  type="hidden" name="value_dinner" />
+        <input  type="hidden" name="value_park" />
+
+        <input class="btn btn-primary mb-2" type="submit" value="Adicionar" />
+
+        </form>
+
+
+</body>
+</html>

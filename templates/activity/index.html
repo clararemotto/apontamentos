@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/style/style.css' %}"></head>
+    
+<body >
+
+        <h1 > Grupo Mir </h1>
+        <h2 > Atividades </h2>
+
+        {% comment %} Botao adicionar atividade {% endcomment %}
+        <button type="button">Adicionar Atividade</button>
+
+        {% comment %} formulario  {% endcomment %}
+        <form method="get">
+            <label for="client_name"> Cliente </label>
+            {% comment %} select clientes {% endcomment %}
+            <select class="" name="client_name">
+                <option value=""> Todos </option>
+                <option value=""> JS </option>
+            </select>
+            {% comment %} switch ativo/inativo {% endcomment %}
+        <input type="checkbox" id="customSwitch" onchange="toggleStatus()">
+        <label for="customSwitch"> Ativo/inativo JS </label>
+        {% comment %} botao filtrar {% endcomment %}
+        <button type="submit"> Filtrar </button>
+    </form>
+
+    {% comment %} tabela com javascript {% endcomment %}
+    <table>
+        {% comment %} titulo da tabela {% endcomment %}
+        <thead>
+            <tr>
+                <th> Projetos</th>
+                <th> Cliente</th>
+                <th> Atividade</th>
+                <th> Funcionários</th>
+                <th> Controle</th>
+                <th> Ativo</th>
+                <th> Ações</th>
+            </tr>
+        </thead>
+        {% comment %} corpo da tabela {% endcomment %}
+        <tbody>
+            <tr>
+                <th> JS</th>
+                <th> JS</th>
+                <th> JS</th>
+                <th> JS</th>
+                <th> JS</th>
+                <th> JS</th>
+                <th> JS</th>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
