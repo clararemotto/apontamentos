@@ -130,3 +130,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'aponta_rapido',
+        'ENFORCE_SCHEMA': False,
+        'HOST': 'mongodb://localhost:27017/', 
+    }
+}

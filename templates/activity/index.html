@@ -4,115 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Atividades</title>
     <link rel="stylesheet" href="{% static '/styles/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body class="">
-<div class="p-5">
-    <h2 > Atividades </h2>
-    
-    {% comment %} Botao adicionar atividade {% endcomment %}
-    <a href="{% url 'add' %}" class="btn btn-primary mb-2">
-        Adicionar Atividade
-    </a>
-    
+<body>
+    <div class="container mt-4">
+        <div class="mb-4">
+            <h2>Atividades</h2>
+            <p class="text-muted">Gerencie suas atividades e filtros de busca.</p>
+        </div>
+
+        <div class="mb-3">
+            <a href="{% url 'add_activity' %}" class="btn btn-primary">Adicionar Atividade</a>
+        </div>
         
 
+        <div class="mb-4">
+            <form method="get">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="client_name" class="form-label">Cliente</label>
+                        <select class="form-control" name="client_name" required>
+                            <option value="">Todos</option>
+                            {% for cliente in clientes %}
+                                <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-<div class="row">
-    <div class="col-lg-12 mb-2">
-        {% comment %} formulario  {% endcomment %}
-        <form method="get">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <label for="client_name"> Cliente </label>
-                </div>
-                <div class="col-auto">
-                    {% comment %} select clientes {% endcomment %}
-                    <select class="form-control" style="width: 300px" name="client_name">
-                        <option value=""> Todos </option>
-                        <option value=""> JS </option>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <div class="custom-control custom-switch border-0">
-                        <!-- Switch ativo/inativo -->
-                        <input class="custom-control-input" type="checkbox" id="check" onchange="toggleStatus()">
-                        <label class="switch" for="check">
-                            <span class="slider"></span>
-                        </label>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="check" onchange="toggleStatus()">
+                            <label class="form-check-label" for="check">Ativo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
                     </div>
                 </div>
-                
-                <div class="col-auto">
-                    {% comment %} botao filtrar {% endcomment %}
-                    <button type="submit" class="btn btn-primary"> Filtrar </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-    
+            </form>
+        </div>
 
-
-
-<div class="row  layout-top-spacing" id="cancel-row">
-    <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-        <div class="widget-content  widget-content-area br-6">
-            <div class="table-responsive card card-body border-0 shadow bg-white mb-4 mt-4 ">
-                {% comment %} tabela com JS {% endcomment %}
-                <table id="zero-config" class="table  table-hover   " style="width:100%">
-                    {% comment %} titulo da tabela {% endcomment %}
-                    <thead>
-                        <tr>
-                            <th> Projetos</th>
-                            <th> Cliente</th>
-                            <th> Atividade</th>
-                            <th> Funcionários</th>
-                            <th> Controle</th>
-                            <th> Ativo</th>
-                            <th> Ações</th>
-                        </tr>
-                    </thead>
-                    {% comment %} corpo da tabela {% endcomment %}
-                    <div class=" d-flex align-items-center justify-content-center">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="table-responsive mt-2">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Projeto</th>
+                                <th>Cliente</th>
+                                <th>Atividade</th>
+                                <th>Funcionários</th>
+                                <th>Controle</th>
+                                <th>Ativo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> 
-                                    <i class="btn btn-primary bi bi-pencil-square" ></i>
-                                    <i class="btn btn-danger bi bi-trash"></i>
-                                    <i class="btn btn-secondary bi bi-eye"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> JS</td>
-                                <td> 
-                                    <i class="btn btn-primary bi bi-pencil-square"></i>
-                                    <i class="btn btn-danger bi bi-trash"></i>
-                                    <i class="btn btn-secondary bi bi-eye"></i>
-                                </td>
-                            </tr>
+                            {% for atividade in atividades %}
+                                <tr>
+                                    <td>{{ atividade.projeto }}</td>
+                                    <td>{{ atividade.cliente.nome }}</td>
+                                    <td>{{ atividade.atividade }}</td>
+                                    <td>{{ atividade.funcionarios }}</td>
+                                    <td>{{ atividade.controle }}</td>
+                                    <td>{{ atividade.ativo }}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Editar</button>
+                                        <button class="btn btn-danger btn-sm">Deletar</button>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Nenhuma atividade encontrada para este filtro</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
-                    </div>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    
-</div>
+
+    <script>
+        function toggleStatus() {
+            const checkBox = document.getElementById('check');
+            if (checkBox.checked) {
+                alert('O status foi ativado');
+            } else {
+                alert('O status foi desativado');
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATF/JJY0S3mNKa0MUJ4wYm4O4w8gP6LCJ/LLqqJ0QVoH3F1z7QAB7pm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></script>
 </body>
 </html>
